@@ -105,11 +105,15 @@
         <button class="hud-button"
             onmousedown="startRotating('left')"
             onmouseup="stopRotating()"
-            onmouseleave="stopRotating()">Left</button>
+            onmouseleave="stopRotating()"
+            ontouchstart="startRotating('left')" 
+            ontouchend="stopRotating()">Left</button>
         <button class="hud-button"
             onmousedown="startRotating('right')"
             onmouseup="stopRotating()"
-            onmouseleave="stopRotating()">Right</button>
+            onmouseleave="stopRotating()"
+            ontouchstart="startRotating('right')" 
+            ontouchend="stopRotating()">Right</button>
         <button class="hud-button" onclick="showInfo()">Info</button>
         <button class="hud-button" onclick="playCurrentSound()">Play Sound</button>
         <button class="hud-button" onclick="stopCurrentSound()">Stop Sound</button>
@@ -191,10 +195,10 @@
 
 
        <a-plane visible="false" id="LeftRotate" src="#RightArrow" scale="0.5 0.5 0.5" position="-1 0.5 -9" class="ui"
-         ontouchstart="startRotating('left')" ontouchend="stopRotating()"onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
+         onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
 <a-plane visible="false" id="RightRotate" src="#LeftArrow" scale="0.5 0.5 0.5" position="-1.5 0.5 -9" class="ui"
-         ontouchstart="startRotating('right')" ontouchend="stopRotating()"onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
+         onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
     
 
