@@ -106,14 +106,14 @@
             onmousedown="startRotating('left')"
             onmouseup="stopRotating()"
             onmouseleave="stopRotating()"
-            ontouchstart="startRotating('left')" 
-            ontouchend="stopRotating()">Left</button>
+             ontouchstart="startRotating('left')" 
+             ontouchend="stopRotating()">Left</button>
         <button class="hud-button"
             onmousedown="startRotating('right')"
             onmouseup="stopRotating()"
             onmouseleave="stopRotating()"
-            ontouchstart="startRotating('right')" 
-            ontouchend="stopRotating()">Right</button>
+             ontouchstart="startRotating('right')"
+              ontouchend="stopRotating()">Right</button>
         <button class="hud-button" onclick="showInfo()">Info</button>
         <button class="hud-button" onclick="playCurrentSound()">Play Sound</button>
         <button class="hud-button" onclick="stopCurrentSound()">Stop Sound</button>
@@ -189,7 +189,6 @@
 
         <a-box visible="false" id="nextInstrument" position="2 0.5 -9" color="orange" depth="0.5" height="0.5" width="0.5" class="ui"onclick="nextInstrument()"></a-box>
 
-
         <a-box id="redirectBox"
               position="0 0.5 -9.4"
               depth="0.3" height="0.5" width="0.5"
@@ -203,13 +202,14 @@
           <a-text id="arTEXT" value="Open AR Page" align="center" color="black" width="4"  visible="false"></a-text>
         </a-entity>
         
+        
 
 
        <a-plane visible="false" id="LeftRotate" src="#RightArrow" scale="0.5 0.5 0.5" position="-1 0.5 -9" class="ui"
-         onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
+         ontouchstart="startRotating('left')" ontouchend="stopRotating()"onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
 <a-plane visible="false" id="RightRotate" src="#LeftArrow" scale="0.5 0.5 0.5" position="-1.5 0.5 -9" class="ui"
-         onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
+        onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
     
 
@@ -293,7 +293,7 @@ const uiElementsToToggle = [
   document.getElementById('NextinstrumentText'),
   document.getElementById('nextInstrument'),
   document.getElementById('LeftRotate'),
-  document.getElementById('RightRotate')
+  document.getElementById('RightRotate'),
   document.getElementById('redirectBox'),
   document.getElementById('arTEXT')
 ];
@@ -464,7 +464,7 @@ function stopCurrentSound() {
   }
 }
 
-    function redirectToInstrumentPage() {
+function redirectToInstrumentPage() {
   const currentId = instruments[currentInstrumentIndex];
   const instrumentToPage = {
     "flute-wrapper": "ArFlute.html",
@@ -483,6 +483,7 @@ function stopCurrentSound() {
     alert("No page defined for this instrument.");
   }
 }
+
 
 
 
