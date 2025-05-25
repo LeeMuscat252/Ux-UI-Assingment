@@ -190,7 +190,18 @@
         <a-box visible="false" id="nextInstrument" position="2 0.5 -9" color="orange" depth="0.5" height="0.5" width="0.5" class="ui"onclick="nextInstrument()"></a-box>
 
 
-        
+        <a-box id="redirectBox"
+              position="0 0.5 -9.4"
+              depth="0.3" height="0.5" width="0.5"
+              color="#007BFF"
+              class="ui"
+              onclick="redirectToInstrumentPage()"
+              visible="false">
+        </a-box>
+
+        <a-entity position="0 0.5 -9.2">
+          <a-text id="arTEXT" value="Open AR Page" align="center" color="black" width="4"  visible="false"></a-text>
+        </a-entity>
         
 
 
