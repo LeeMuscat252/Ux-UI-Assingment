@@ -464,6 +464,26 @@ function stopCurrentSound() {
   }
 }
 
+    function redirectToInstrumentPage() {
+  const currentId = instruments[currentInstrumentIndex];
+  const instrumentToPage = {
+    "flute-wrapper": "ArFlute.html",
+    "guitar-wrapper": "ArGuitar.html",
+    "keyboard-wrapper": "ArKeyboard.html",
+    "drumset-wrapper": "ArDrum.html",
+    "piano-wrapper": "ArPiano.html",
+    "acousticguitar-wrapper": "ArAcousticGuitar.html",
+    "violin-wrapper": "ArViolin.html"
+  };
+
+  const targetPage = instrumentToPage[currentId];
+  if (targetPage) {
+    window.location.href = targetPage;
+  } else {
+    alert("No page defined for this instrument.");
+  }
+}
+
 
 
 </script>
