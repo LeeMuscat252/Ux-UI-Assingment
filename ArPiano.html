@@ -12,7 +12,7 @@
 
   <script>
   function goback() {
-    window.location.href = "index.html"; // Change this to your main page's file name
+    window.location.href = "index.html";
   }
 </script>
 
@@ -22,15 +22,12 @@
       <a-asset-item id="Piano" src="resources/piano/scene.gltf"></a-asset-item>
     </a-assets>
   </a-assets>
-  <!-- create your content here. just a box for now -->
-  <!--<a-box color="red" position='0 2 0' material='opacity: 0.5;' animation="property:rotation; from:0 360 0; loop:true"></a-box>-->
     <a-entity gltf-model="#Piano" animation-mixer scale="0.02 0.02 0.02"
                   position="0 0.5 0" rotation="-90 0 0"></a-entity>
 
         <a-text value="Most popular Instruments" color="#000000" width="4" align="center"
                 position="0 0 0.8" rotation="-90 0 0" visible="true"></a-text>
   
-  <!-- define a camera which will move according to the marker position -->
   <a-marker-camera preset='hiro'></a-marker-camera>
 </a-scene>
 
