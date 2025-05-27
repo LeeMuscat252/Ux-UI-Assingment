@@ -42,7 +42,7 @@
       position: fixed;
       bottom: 20px;
       left: 50%;
-      transform: translateX(-50%);
+      margin-left: -350px;
       display: flex;
       gap: 10px;
       z-index: 999;
@@ -60,8 +60,6 @@
 
     #infoPanel {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
@@ -74,11 +72,10 @@
   .info-box {
   background-color: black;
   color: white;
-  padding: 40px;
+  padding: 40px; 
   border-radius: 12px;
-  max-width: 800px;
+  max-width: 800px; 
   font-size: 20px; 
-  line-height: 1.6; 
   position: relative;
   text-align: center;
 }
@@ -205,10 +202,10 @@
         
 
 
-       <a-plane visible="false" id="RightRotate" src="#RightArrow" scale="0.5 0.5 0.5" position="-1 0.5 -9" class="ui"
+        <a-plane visible="false" id="RightRotate" src="#RightArrow" scale="0.5 0.5 0.5" position="-1 0.5 -9" class="ui"
          onmousedown="startRotating('right')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
-<a-plane visible="false" id="LeftRotate" src="#LeftArrow" scale="0.5 0.5 0.5" position="-1.5 0.5 -9" class="ui"
+        <a-plane visible="false" id="LeftRotate" src="#LeftArrow" scale="0.5 0.5 0.5" position="-1.5 0.5 -9" class="ui"
         onmousedown="startRotating('left')" onmouseup="stopRotating()" onmouseleave="stopRotating()"></a-plane>
 
     
@@ -247,35 +244,36 @@
     </a-scene>
 <script>
   const instruments = [
-    "flute-wrapper",
-    "guitar-wrapper",
-    "keyboard-wrapper",
-    "drumset-wrapper",
-    "piano-wrapper",
-    "acousticguitar-wrapper",
-    "violin-wrapper"
-  ];
+  "flute-wrapper",
+  "guitar-wrapper",
+  "keyboard-wrapper",
+  "drumset-wrapper",
+  "piano-wrapper",
+  "acousticguitar-wrapper",
+  "violin-wrapper"
+];
 
-  const instrumentYPositions = {
-    "flute-wrapper": 1,
-    "guitar-wrapper": 2,
-    "keyboard-wrapper": 1,
-    "drumset-wrapper": 1,
-    "piano-wrapper": 1,
-    "acousticguitar-wrapper": 1.5,
-    "violin-wrapper": 1
-  };
+const instrumentYPositions = {
+  "flute-wrapper": 1,
+  "guitar-wrapper": 2,
+  "keyboard-wrapper": 1,
+  "drumset-wrapper": 1,
+  "piano-wrapper": 1,
+  "acousticguitar-wrapper": 1.5,
+  "violin-wrapper": 1
+};
 
-  const instrumentInfo = {
-    "flute-wrapper": "This is the neanderthal flute. It is the oldest instrument created which dated 60000 years ago and was discovered in the Divje Babe cave near Cerkno in 1995.",
-    "guitar-wrapper": "Hybrid Acoustic-Electric Instruments like guitars were first developed in 1930 by George Beauchamp and Adolph Rickenbacker.",
-    "keyboard-wrapper": "Digital pianos replicate acoustic piano sounds with added technology. First developed in 1979 and patented in 1981 by Wilton Decker.",
-    "drumset-wrapper": "Electronic Drum Kits use sensors to generate sound and were first developed in the early 1970s by Graeme Edge of the Moody Blues.",
-    "piano-wrapper": "The piano is the most popular instrument. Invented by Bartolomeo Cristofori in 1655 in Italy.",
-    "acousticguitar-wrapper": "The guitar is the second most popular instrument. Invented by a German immigrant in America in the 15th century.",
-    "violin-wrapper": "The violin is the third most popular instrument. It was invented by Andrea Amati around 1565."
-  };
-  const instrumentWallText = {
+const instrumentInfo = {
+  "flute-wrapper": "This is the neanderthal flute. It is the oldest instrument created which dated 60000 years ago and was discovered in the Divje Babe cave near Cerkno in 1995.",
+  "guitar-wrapper": "Hybrid Acoustic-Electric Instruments like guitars were first developed in 1930 by George Beauchamp and Adolph Rickenbacker.",
+  "keyboard-wrapper": "Digital pianos replicate acoustic piano sounds with added technology. First developed in 1979 and patented in 1981 by Wilton Decker.",
+  "drumset-wrapper": "Electronic Drum Kits use sensors to generate sound and were first developed in the early 1970s by Graeme Edge of the Moody Blues.",
+  "piano-wrapper": "The piano is the most popular instrument. Invented by Bartolomeo Cristofori in 1655 in Italy.",
+  "acousticguitar-wrapper": "The guitar is the second most popular instrument. Invented by a German immigrant in America in the 15th century.",
+  "violin-wrapper": "The violin is the third most popular instrument. It was invented by Andrea Amati around 1565."
+};
+
+const instrumentWallText = {
   "flute-wrapper": "oldest Instrument",
   "guitar-wrapper": "Latest instruments",
   "keyboard-wrapper": "Latest instruments",
@@ -286,66 +284,50 @@
 };
 
 const uiElementsToToggle = [
-  document.getElementById('BackText'),
-  document.getElementById('SideWallText'),
-  document.getElementById('Click'),
-  document.getElementById('rotate text'),
-  document.getElementById('NextinstrumentText'),
-  document.getElementById('nextInstrument'),
-  document.getElementById('LeftRotate'),
-  document.getElementById('RightRotate'),
-  document.getElementById('redirectBox'),
-  document.getElementById('arTEXT')
-];
+  'BackText', 'SideWallText', 'Click', 'rotate text', 'NextinstrumentText',
+  'nextInstrument', 'LeftRotate', 'RightRotate', 'redirectBox', 'arTEXT'
+].map(id => document.getElementById(id));
 
+const instrumentDefaultStates = {};
 
-
-  const instrumentDefaultStates = {};
-
-  window.addEventListener("load", () => {
-    const canvases = document.getElementsByTagName("canvas");
-    for (let canvas of canvases) {
-      canvas.style.position = "absolute";
-      canvas.style.zIndex = "0";
-    }
-    instruments.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) {
-        instrumentDefaultStates[id] = {
-          position: { ...el.getAttribute("position") },
-          rotation: { ...el.getAttribute("rotation") }
-        };
-      }
-    });
+window.addEventListener("load", () => {
+  [...document.getElementsByTagName("canvas")].forEach(canvas => {
+    canvas.style.position = "absolute";
+    canvas.style.zIndex = "0";
   });
 
+  instruments.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      instrumentDefaultStates[id] = {
+        position: { ...el.getAttribute("position") },
+        rotation: { ...el.getAttribute("rotation") }
+      };
+    }
+  });
+});
 
-  let in3DMode = false;
+let in3DMode = false;
+let currentInstrumentIndex = 0;
+let rotateInterval = null;
+let currentRotation = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.instrument').forEach(entity => {
     entity.addEventListener('click', () => {
       if (in3DMode) {
         const sound = entity.components.sound;
-        if (sound) {
-          sound.playSound();
-        }
+        if (sound) sound.playSound();
       }
     });
   });
 });
 
-  let currentInstrumentIndex = 0;
-  let rotateInterval = null;
-  let currentRotation = 0;
-
-  function startRotating(direction) {
+function startRotating(direction) {
   if (rotateInterval) return;
-
   const currentId = instruments[currentInstrumentIndex];
   const entity = document.getElementById(currentId);
   if (!entity) return;
-
   const step = direction === 'left' ? -2 : 2;
   rotateInterval = setInterval(() => {
     currentRotation += step;
@@ -353,30 +335,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 30);
 }
 
-  function stopRotating() {
-    clearInterval(rotateInterval);
-    rotateInterval = null;
-  }
+function stopRotating() {
+  clearInterval(rotateInterval);
+  rotateInterval = null;
+}
 
-  function showInfo() {
-    const currentId = instruments[currentInstrumentIndex];
-    document.getElementById('infoText').innerText = instrumentInfo[currentId] || "No information available.";
-    document.getElementById('infoPanel').style.display = 'flex';
-  }
+function showInfo() {
+  const currentId = instruments[currentInstrumentIndex];
+  document.getElementById('infoText').innerText = instrumentInfo[currentId] || "No information available.";
+  document.getElementById('infoPanel').style.display = 'flex';
+}
 
-  function hideInfo() {
-    document.getElementById('infoPanel').style.display = 'none';
-  }
+function hideInfo() {
+  document.getElementById('infoPanel').style.display = 'none';
+}
 
-  function nextInstrument() {
+function nextInstrument() {
   const currentId = instruments[currentInstrumentIndex];
   const currentEl = document.getElementById(currentId);
-  
-
-  const currentInstrument = currentEl.querySelector('[sound]');
-  if (currentInstrument && currentInstrument.components.sound) {
-    currentInstrument.components.sound.stopSound();
-  }
+  const currentSound = currentEl.querySelector('[sound]');
+  if (currentSound && currentSound.components.sound) currentSound.components.sound.stopSound();
 
   currentEl.setAttribute("animation", {
     property: "position",
@@ -399,26 +377,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   currentRotation = 0;
-
-  const wallTextValue = instrumentWallText[nextId] || "";
-  document.getElementById('BackText').setAttribute('value', wallTextValue);
-
-  const infoValue = instrumentInfo[nextId] || "";
-  document.getElementById('SideWallText').setAttribute('value', infoValue);
+  document.getElementById('BackText').setAttribute('value', instrumentWallText[nextId] || "");
+  document.getElementById('SideWallText').setAttribute('value', instrumentInfo[nextId] || "");
 }
 
-
- function enable3DMode() {
+function enable3DMode() {
   in3DMode = true;
   const camera = document.getElementById('camera');
   camera.setAttribute('wasd-controls-enabled', true);
   camera.setAttribute('look-controls-enabled', true);
-   const crosshair = document.getElementById('crosshair');
-   crosshair.setAttribute('visible', 'true');
-
+  document.getElementById('crosshair').setAttribute('visible', 'true');
   document.getElementById('hud-buttons').style.display = 'none';
   document.getElementById('exit-walkmode-button').style.display = 'block';
-
   uiElementsToToggle.forEach(el => el.setAttribute('visible', 'true'));
 }
 
@@ -432,36 +402,22 @@ function exitWalkMode() {
   if (camera.components['wasd-controls']) {
     camera.components['wasd-controls'].velocity.set(0, 0, 0);
   }
-
-  const crosshair = document.getElementById('crosshair');
-  crosshair.setAttribute('visible', 'false');
-
+  document.getElementById('crosshair').setAttribute('visible', 'false');
   document.getElementById('hud-buttons').style.display = 'flex';
   document.getElementById('exit-walkmode-button').style.display = 'none';
-
   uiElementsToToggle.forEach(el => el.setAttribute('visible', 'false'));
 }
 
-
 function playCurrentSound() {
-  const currentWrapperId = instruments[currentInstrumentIndex];
-  const wrapper = document.getElementById(currentWrapperId);
-  if (wrapper) {
-    const instrument = wrapper.querySelector('[sound]');
-    if (instrument && instrument.components.sound) {
-      instrument.components.sound.playSound();
-    }
-  }
+  const wrapper = document.getElementById(instruments[currentInstrumentIndex]);
+  const instrument = wrapper?.querySelector('[sound]');
+  if (instrument?.components.sound) instrument.components.sound.playSound();
 }
 
 function stopCurrentSound() {
-  const currentWrapperId = instruments[currentInstrumentIndex];
-  const wrapper = document.getElementById(currentWrapperId);
-
-  const instrument = wrapper.querySelector('[sound]');
-  if (instrument && instrument.components.sound) {
-    instrument.components.sound.stopSound();
-  }
+  const wrapper = document.getElementById(instruments[currentInstrumentIndex]);
+  const instrument = wrapper?.querySelector('[sound]');
+  if (instrument?.components.sound) instrument.components.sound.stopSound();
 }
 
 function redirectToInstrumentPage() {
@@ -475,18 +431,10 @@ function redirectToInstrumentPage() {
     "acousticguitar-wrapper": "ArAcousticGuitar.html",
     "violin-wrapper": "ArViolin.html"
   };
-
   const targetPage = instrumentToPage[currentId];
-  if (targetPage) {
-    window.location.href = targetPage;
-  } else {
-    alert("No page defined for this instrument.");
-  }
+  if (targetPage) window.location.href = targetPage;
+  else alert("No page defined for this instrument.");
 }
-
-
-
-
 </script>
 </body>
 </html>
