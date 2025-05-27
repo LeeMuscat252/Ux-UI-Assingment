@@ -297,11 +297,11 @@ window.addEventListener("load", () => {
   });
 
   instruments.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
+    const inst = document.getElementById(id);
+    if (inst) {
       instrumentDefaultStates[id] = {
-        position: { ...el.getAttribute("position") },
-        rotation: { ...el.getAttribute("rotation") }
+        position: { ...inst.getAttribute("position") },
+        rotation: { ...inst.getAttribute("rotation") }
       };
     }
   });
@@ -410,14 +410,14 @@ function exitWalkMode() {
 
 function playCurrentSound() {
   const wrapper = document.getElementById(instruments[currentInstrumentIndex]);
-  const instrument = wrapper?.querySelector('[sound]');
-  if (instrument?.components.sound) instrument.components.sound.playSound();
+  const instrument = wrapper.querySelector('[sound]');
+  if (instrument.components.sound) instrument.components.sound.playSound();
 }
 
 function stopCurrentSound() {
   const wrapper = document.getElementById(instruments[currentInstrumentIndex]);
-  const instrument = wrapper?.querySelector('[sound]');
-  if (instrument?.components.sound) instrument.components.sound.stopSound();
+  const instrument = wrapper.querySelector('[sound]');
+  if (instrument.components.sound) instrument.components.sound.stopSound();
 }
 
 function redirectToInstrumentPage() {
