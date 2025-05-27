@@ -342,7 +342,7 @@ function stopRotating() {
 
 function showInfo() {
   const currentId = instruments[currentInstrumentIndex];
-  document.getElementById('infoText').innerText = instrumentInfo[currentId] || "No information available.";
+  document.getElementById('infoText').innerText = instrumentInfo[currentId];
   document.getElementById('infoPanel').style.display = 'flex';
 }
 
